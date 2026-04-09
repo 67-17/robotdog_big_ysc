@@ -1,0 +1,6 @@
+*.pt
+*.pth
+*.whl
+*.zip
+dependencies/
+models/
