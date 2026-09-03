@@ -1,0 +1,128 @@
+{
+  "image": "/home/ysc/my_sw/robot_competition/calibration/id4_pickup_entry/20260817_115942/id4_center_raw.jpg",
+  "results": [
+    {
+      "family": "DICT_APRILTAG_16h5",
+      "marker_border_bits": 1,
+      "detections": [],
+      "rejected_count": 64
+    },
+    {
+      "family": "DICT_APRILTAG_16h5",
+      "marker_border_bits": 2,
+      "detections": [],
+      "rejected_count": 64
+    },
+    {
+      "family": "DICT_APRILTAG_16h5",
+      "marker_border_bits": 3,
+      "detections": [],
+      "rejected_count": 64
+    },
+    {
+      "family": "DICT_APRILTAG_25h9",
+      "marker_border_bits": 1,
+      "detections": [],
+      "rejected_count": 64
+    },
+    {
+      "family": "DICT_APRILTAG_25h9",
+      "marker_border_bits": 2,
+      "detections": [],
+      "rejected_count": 64
+    },
+    {
+      "family": "DICT_APRILTAG_25h9",
+      "marker_border_bits": 3,
+      "detections": [],
+      "rejected_count": 64
+    },
+    {
+      "family": "DICT_APRILTAG_36h10",
+      "marker_border_bits": 1,
+      "detections": [],
+      "rejected_count": 64
+    },
+    {
+      "family": "DICT_APRILTAG_36h10",
+      "marker_border_bits": 2,
+      "detections": [],
+      "rejected_count": 64
+    },
+    {
+      "family": "DICT_APRILTAG_36h10",
+      "marker_border_bits": 3,
+      "detections": [],
+      "rejected_count": 64
+    },
+    {
+      "family": "DICT_APRILTAG_36h11",
+      "marker_border_bits": 1,
+      "detections": [
+        {
+          "id": 5,
+          "center_x_px": 679.75,
+          "center_y_px": 418.75,
+          "edge_px": 65.04202655799023,
+          "corners": [
+            [
+              714.0,
+              451.0
+            ],
+            [
+              648.0,
+              452.0
+            ],
+            [
+              647.0,
+              387.0
+            ],
+            [
+              710.0,
+              385.0
+            ]
+          ]
+        }
+      ],
+      "rejected_count": 63
+    },
+    {
+      "family": "DICT_APRILTAG_36h11",
+      "marker_border_bits": 2,
+      "detections": [
+        {
+          "id": 5,
+          "center_x_px": 679.7413635253906,
+          "center_y_px": 418.8975067138672,
+          "edge_px": 74.67467662141203,
+          "corners": [
+            [
+              718.4324951171875,
+              456.3999938964844
+            ],
+            [
+              641.5895385742188,
+              455.471923828125
+            ],
+            [
+              642.6469116210938,
+              381.30364990234375
+            ],
+            [
+              716.2965087890625,
+              382.4144592285156
+            ]
+          ]
+        }
+      ],
+      "rejected_count": 63
+    },
+    {
+      "family": "DICT_APRILTAG_36h11",
+      "marker_border_bits": 3,
+      "detections": [],
+      "rejected_count": 64
+    }
+  ],
+  "id4_match": null
+}

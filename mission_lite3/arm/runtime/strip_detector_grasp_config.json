@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "camera": {
+    "device": "/dev/video0",
+    "width": 1280,
+    "height": 720,
+    "fps": 25,
+    "fourcc": "MJPG",
+    "opencv_threads": 4
+  },
+  "colors": {
+    "red": [
+      {
+        "lower": [168, 45, 50],
+        "upper": [179, 255, 255]
+      }
+    ],
+    "green": [
+      {
+        "lower": [35, 70, 60],
+        "upper": [95, 255, 255]
+      }
+    ]
+  },
+  "morphology": {
+    "open_kernel": 3,
+    "close_kernel": 5,
+    "open_iterations": 1,
+    "close_iterations": 1
+  },
+  "geometry": {
+    "min_area_px": 1200,
+    "max_area_ratio": 0.22,
+    "min_long_side_px": 45,
+    "min_short_side_px": 24,
+    "min_aspect_ratio": 1.0,
+    "max_aspect_ratio": 4.5,
+    "ideal_aspect_ratio": 2.0,
+    "min_fill_ratio": 0.55,
+    "min_solidity": 0.75,
+    "border_margin_px": 3,
+    "min_confidence": 0.45
+  },
+  "tracker": {
+    "max_center_distance_px": 110,
+    "max_area_change_ratio": 0.65,
+    "max_missed_frames": 5,
+    "stable_frames": 5,
+    "angle_alpha": 0.35,
+    "min_orientation_aspect_ratio": 1.2
+  },
+  "roi": [0.0, 0.0, 1.0, 0.95],
+  "output": {
+    "frame_id": "arm_camera_optical_frame",
+    "print_interval_seconds": 0.5,
+    "metrics_interval_seconds": 1.0,
+    "debug_directory": "strip_debug"
+  }
+}

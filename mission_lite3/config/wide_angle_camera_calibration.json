@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "model": "pinhole",
+  "image_size": [1280, 720],
+  "camera_matrix": [
+    [503.64762177493685, 0.0, 643.135965320731],
+    [0.0, 502.15232696056347, 365.88059054895956],
+    [0.0, 0.0, 1.0]
+  ],
+  "distortion_coefficients": [
+    0.04131554776799115,
+    -0.09232857362605969,
+    0.0005933444977866054,
+    0.0032962131921393527,
+    0.02414418822229366
+  ],
+  "undistort_alpha": 0.0,
+  "new_camera_matrix": [
+    [458.74614106360616, 0.0, 653.8045824090493],
+    [0.0, 502.16144230622155, 366.5880060409912],
+    [0.0, 0.0, 1.0]
+  ],
+  "valid_roi": [0, 0, 1279, 719],
+  "calibration_board": {
+    "squares": [9, 12],
+    "inner_corners": [8, 11],
+    "square_size_mm": 15.0
+  },
+  "quality": {
+    "sample_count": 25,
+    "rms_reprojection_px": 0.14618731302664723,
+    "max_view_error_px": 0.32989362769750563,
+    "straightness_rms_px": 0.05122528860972759,
+    "center_x_span": 0.6159206361933187,
+    "center_y_span": 0.40339304485706373,
+    "area_scale_ratio": 3.4082111718063306,
+    "angle_span_deg": 99.53051797793498
+  },
+  "source_session": "wide_camera_calibration_runs/20260714-211850",
+  "validated_for_undistortion": true,
+  "validated_for_control": true,
+  "control_validation": {
+    "date": "2026-07-14",
+    "method": "guarded low-speed yaw pulses with independent wide-camera remeasurement",
+    "positive_error_wz_sign": -1,
+    "control_tolerance_deg": 1.5,
+    "final_median_parallel_error_deg": 0.8686915434323541,
+    "final_robust_range_deg": 0.4669629039578289,
+    "motion_command_count": 6,
+    "evidence_run": "wide_box_yaw_probe_runs/20260714-215219"
+  }
+}

@@ -1,0 +1,2 @@
+scripts/run_full_mission.sh text eol=lf
+scripts/run_pickup_transfer_mission.sh text eol=lf

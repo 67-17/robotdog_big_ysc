@@ -1,0 +1,15 @@
+[Unit]
+Description=Lite3 remote UDP audio playback server
+After=network-online.target sound.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/robot_competition
+ExecStart=/usr/bin/python3 /opt/robot_competition/remote_audio_server.py --audio-dir /opt/robot_competition/inspection_audio_test --device plughw:CARD=rockchipes8388c,DEV=0 --port 43910 --default-gain-db 0
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

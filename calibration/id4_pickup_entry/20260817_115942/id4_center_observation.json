@@ -1,0 +1,19 @@
+{
+  "captured_at": "2026-08-17T11:59:46.595149+08:00",
+  "camera_source": "rtsp://192.168.1.120:8554/test",
+  "frame_size": [
+    1280,
+    720
+  ],
+  "requested_samples": 15,
+  "captured_frames": 15,
+  "id4_detected_frames": 0,
+  "id4": null,
+  "search_boundary_m": {
+    "left": -0.5,
+    "right": 0.5
+  },
+  "semantic_role": "waypoint_4_pickup_area_entry_center",
+  "raw_image": "/home/ysc/my_sw/robot_competition/calibration/id4_pickup_entry/20260817_115942/id4_center_raw.jpg",
+  "annotated_image": "/home/ysc/my_sw/robot_competition/calibration/id4_pickup_entry/20260817_115942/id4_center_annotated.jpg"
+}

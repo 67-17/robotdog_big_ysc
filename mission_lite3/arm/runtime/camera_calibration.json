@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "model": "opencv_rational",
+  "image_size": [
+    1280,
+    720
+  ],
+  "camera_matrix": [
+    [
+      3378.8485247947997,
+      0.0,
+      632.2264104400434
+    ],
+    [
+      0.0,
+      3006.7954386937195,
+      358.53950384519084
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "distortion_coefficients": [
+    1.7263003595146593,
+    -20.333252472999643,
+    -0.09704043183785632,
+    0.0785510570829373,
+    2242.131870519687,
+    0.8306794611391998,
+    189.18886360943088,
+    628.1529216615033,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "rms_reprojection_error": 3.1760720400503413,
+  "mean_per_view_error_px": 2.552248820085033,
+  "max_per_view_error_px": 6.6854676355327785,
+  "per_view_errors_px": [
+    2.355724125850523,
+    1.8754443177885265,
+    5.572615018252474,
+    4.658345809170017,
+    4.769376066255295,
+    6.6854676355327785,
+    3.9377848773836037,
+    4.413348575895414,
+    1.6342707437571133,
+    2.52007535873508,
+    3.13872882013623,
+    3.345788265850912,
+    1.9523505057527897,
+    0.5724563434187676,
+    0.8309307718478739,
+    1.299902062986736,
+    0.891689252110503,
+    0.22609132953918296,
+    0.2114374708705932,
+    0.15314905056624822
+  ],
+  "board": {
+    "inner_corners": [
+      8,
+      11
+    ],
+    "square_size_mm": 15.0
+  },
+  "accepted_images": [
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_001.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_002.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_003.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_004.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_005.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_006.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_007.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_008.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_009.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_010.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_011.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_012.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_013.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_014.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_015.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_016.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_017.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_018.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_019.jpg",
+    "/mnt/hgfs/competition/arm/camera_calibration_images/calibration_020.jpg"
+  ]
+}

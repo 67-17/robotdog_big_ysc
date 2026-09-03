@@ -1,0 +1,127 @@
+# 场地与路线配置。
+# 注意：5m x 6m 只按路线图中上下黑色横线之间计算，不包含横线外页眉/页脚。
+{
+  "field": {
+    # 有效比赛区域尺寸，单位 m。
+    "width_m": 5.0,
+    "length_m": 6.0,
+    # 坐标原点仍为右下角出发区中心；实际起点向地图上方偏移 0.40 m。
+    "origin": "start_area_center",
+    # 当前路线参考图。
+    "layout_reference": "26比赛资料/比赛具体位置图.png",
+    "effective_area_note": "5m x 6m is measured only between the top and bottom black horizontal boundary lines in the route image",
+    # 初始位姿：狗在原出发区中心向地图上方 0.40 m 处，狗头朝地图左方/随机障碍区。
+    # 抓取前：forward=地图左方，backward=地图右方，strafe 正=地图下方，strafe 负=地图上方。
+    # 抓取前右转 90 度后：forward=地图上方，backward=地图下方，strafe 正=地图左方，strafe 负=地图右方。
+    "axis_note": "robot starts 0.40 m map-up from the lower-right start-area center, facing map-left toward the obstacle area; before pickup, forward is map-left and positive strafe is map-down; after the pickup turn, forward is map-up"
+  },
+
+  # 参考航点。当前主流程主要使用 scripted_route；这些点用于人工理解和后续标定。
+  "waypoints": {
+    # yaw=3.1416 表示朝地图左方。
+    "start": {"x": 0.0, "y": 0.40, "yaw": 3.1416},
+    "obstacle_entry": {"x": -1.1, "y": 0.8, "yaw": 3.1416},
+    "obstacle_exit": {"x": -1.8, "y": 1.45, "yaw": 3.1416},
+    "inspect_lower": {"x": -2.35, "y": 1.9, "yaw": 3.1416},
+    "inspect_upper": {"x": -2.35, "y": 3.55, "yaw": 3.1416},
+    # yaw=1.5708 表示右转后朝地图上方，用于抓取/投放段。
+    "pickup": {"x": -0.75, "y": 2.65, "yaw": 1.5708},
+    "place": {"x": -0.65, "y": 4.9, "yaw": 1.5708}
+  },
+
+  # 区域粗略位置，仅作为调试参考；真正运动距离看 scripted_route。
+  "zones": {
+    "random_obstacle": {"center": [-1.25, 1.0], "size": [2.2, 1.2]},
+    "inspection_lower": {"center": [-2.45, 1.9], "size": [1.2, 1.1]},
+    "inspection_upper": {"center": [-2.45, 3.55], "size": [1.2, 1.1]},
+    "pickup": {"center": [-0.7, 2.65], "size": [1.5, 1.0]},
+    "placement": {"center": [-0.65, 4.9], "size": [1.8, 0.5]}
+  },
+
+  # 实际执行路线。每个数组里的动作按顺序执行。
+  # 支持动作：
+  # - forward/backward: 按狗当前朝向前进/后退 distance_m
+  # - strafe: 横移 distance_m，正负方向取决于当前朝向
+  # - turn: 原地转 yaw_rad，负值右转，正值左转
+  # - obstacle_forward: 障碍区分段前进，并按传感器结果侧移绕行
+  "scripted_route": {
+    # 从出发区朝地图左方穿越随机障碍区。
+    "pass_obstacle": [
+      {
+        "action": "obstacle_forward",
+        # 无障碍模式下先前进 8 步；空场地总前进约 steps * clear_step_m。
+        "steps": 8,
+        "clear_step_m": 0.2,
+        # 检测到障碍时，先横移 avoid_strafe_m。
+        # 当前初始朝地图左方，负值表示向地图上方绕行。
+        "avoid_strafe_m": 0.45,
+        # 侧移后继续向地图左方前进，越过障碍。
+        "avoid_forward_m": 0.50,
+        # 连续触发障碍超过该次数后停止本避障段，避免无限绕行。
+        "max_avoid_attempts": 1,
+        # true 表示绕过后横移回原通道；false 表示保持绕行后的通道。
+        "return_after_avoid": true,
+        "note": "start facing map-left and cross the random obstacle area"
+      }
+    ],
+
+    # 第 1 个识别图点。新起点已向地图上方移动 0.40 m，因此横移比原路线缩短 0.40 m。
+    # 无障碍测试路线：前进 8 步后横移，再前进 2 步。
+    "inspect_stop_1_arrive": [
+      {"action": "strafe", "distance_m": -0.65, "note": "move map-up toward inspection stop 1 from the start point shifted 0.40 m map-up"},
+      {"action": "forward", "distance_m": 0.40, "note": "move map-left 2 clear steps to inspection stop 1"}
+    ],
+    # 第 3 个识别图点：从第 1 点上移 1.18 m、左移 1.00 m，再右转 90 度。
+    "inspect_stop_3_arrive": [
+      {"action": "strafe", "distance_m": -1.18, "note": "move map-up from inspection stop 1 toward inspection stop 3"},
+      {"action": "forward", "distance_m": 1.00, "note": "move map-left to inspection stops 2 and 3"},
+      {"action": "turn", "yaw_rad": -1.5708, "note": "turn right to face inspection stop 3"}
+    ],
+    # 第 2 个识别图点与第 3 点位置相同，只需原地转 180 度。
+    "inspect_stop_2_arrive": [
+      {"action": "turn", "yaw_rad": -3.1416, "note": "turn 180 degrees from inspection stop 3 to inspection stop 2"}
+    ],
+    # 第 4 个识别图点：从第 2 点右转 90 度、后退 1.00 m、侧移 0.95 m。
+    "inspect_stop_4_arrive": [
+      {"action": "turn", "yaw_rad": -1.5708, "note": "turn right toward inspection stop 4 route"},
+      {"action": "backward", "distance_m": 1.00, "note": "move map-right to inspection stop 4 column"},
+      {"action": "strafe", "distance_m": -0.95, "note": "move map-up to inspection stop 4"},
+
+    ],
+    "inspect_stop_4_depart": [
+    ],
+
+    # 第 4 个识别图点到抓取区。
+    # 第一段 turn：左转 90 度，狗头朝地图下方。
+    # 第二段 forward：从第 4 个识别图点向地图下方移动到物块区所在行。
+    # 第三段 strafe：向地图右方进入抓取通道。
+    "pickup_from_upper_inspection": [
+      {"action": "turn", "yaw_rad": 1.5708, "note": "face map-down for pickup and placement"},
+      {"action": "forward", "distance_m": 1.35, "note": "move map-down from inspection stop 4 toward pickup row"},
+      {"action": "strafe", "distance_m": 1.30, "pickup_entry_tag_scan": true, "note": "move map-right until pickup entry Tag 4 is visible"},
+
+    ],
+
+    # 抓取区到投放区。此时狗头未朝地图上方， forward 是地图上方。
+    "place_from_pickup": [
+      {"action": "turn", "yaw_rad": -3.1416, "note": "face map-up for pickup and placement"},
+      {"action": "placement_row_yaw_align", "note": "correct yaw from the full four-box placement row"},
+      {"action": "placement_letter_approach", "note": "recognize A-D, search, approach, and center the target letter"}
+    ],
+    # 投放区返回抓取区。建议与 place_from_pickup 的距离保持一致。
+    "pickup_from_place": [
+      {"action": "turn", "yaw_rad": 3.1416, "note": "face map-down for pickup and placement"},
+      {"action": "forward", "distance_m": 1.40, "recorded_outbound_restore": true, "note": "reuse first outbound forward odometry with timed fallback"},
+      {"action": "pickup_lane_restore", "note": "reuse first measured lane displacement with the same body-frame sign"}
+    ],
+
+    # 投放区 A/B/C/D 横向对位。
+    # 此时狗头朝地图上方：strafe 正=地图左方，strafe 负=地图右方。
+    "placement_letter_strafe_m": {
+      "A": 0.15,
+      "B": -0.15,
+      "C": -0.45,
+      "D": -0.75
+    }
+  }
+}
